@@ -57,6 +57,17 @@ table {
 
 body {
   font-family: 'Crete Round', serif;
+	background-color: #224eb8
+}
+
+
+input {
+  border: none;
+}
+
+button{
+  border:none;
+  background-color: none;
 }
 `;
 
