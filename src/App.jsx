@@ -5,6 +5,7 @@ import AuthProvider from "./context/AuthContext";
 import GlobalStyled from "./global/globalStyled";
 import Companies from "./pages/Companies";
 import CreateCompany from "./pages/CreateCompany";
+import CreateUser from "./pages/CreateUser";
 import HomePage from "./pages/HomePage";
 import SignIn from "./pages/SignIn";
 import Users from "./pages/Users";
@@ -41,6 +42,15 @@ export default function App() {
             element={
               <PrivateRoute>
                 <Users />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path="/create-user"
+            element={
+              <PrivateRoute>
+                <CreateUser />
               </PrivateRoute>
             }
           />

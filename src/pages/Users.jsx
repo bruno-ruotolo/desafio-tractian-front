@@ -8,14 +8,29 @@ import {
 } from "@ant-design/icons";
 
 import NaittracLogo from "../assets/naittrac.png";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import Header from "../components/Header";
+import usersService from "../services/usersService";
+import User from "../components/users/User";
 
 export default function Users() {
   const navigate = useNavigate();
   const { setAuth, auth } = useContext(AuthContext);
-  const [users, setUsers] = useState([]);
+  const [refresh, setRefresh] = useState(false);
+  const [users, setUsers] = useState([{ managers: [], employees: [] }]);
+  console.log(users);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const users = await usersService.getAllUsers(auth.token);
+        setUsers(users);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, [auth.token, refresh]);
 
   return (
     <>
@@ -37,10 +52,34 @@ export default function Users() {
           </TopInfosContainer>
           <ManagersContainer>
             <h3>Managers</h3>
+            <UsersNamesContainer>
+              {users.managers?.map((user) => {
+                return (
+                  <User
+                    setRefresh={(value) => setRefresh(value)}
+                    refresh={refresh}
+                    key={user._id}
+                    user={user}
+                  />
+                );
+              })}
+            </UsersNamesContainer>
           </ManagersContainer>
 
           <EmployeesContainer>
             <h3>Employees</h3>
+            <UsersNamesContainer>
+              {users.employees?.map((user) => {
+                return (
+                  <User
+                    setRefresh={(value) => setRefresh(value)}
+                    refresh={refresh}
+                    key={user._id}
+                    user={user}
+                  />
+                );
+              })}
+            </UsersNamesContainer>
           </EmployeesContainer>
         </UsersContainer>
       </UsersWrapper>
@@ -49,11 +88,13 @@ export default function Users() {
 }
 
 const UsersWrapper = styled.main`
+  background-color: #224eb8;
   display: flex;
   position: relative;
   flex-direction: column;
   padding: 0px 100px;
-  margin-top: 50px;
+  height: calc(100vh - 70px);
+  top: 70px;
 `;
 
 const UsersContainer = styled.section`
@@ -133,4 +174,10 @@ const EmployeesContainer = styled.div`
     text-align: justify;
     color: #ffffff;
   }
+`;
+
+const UsersNamesContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 `;

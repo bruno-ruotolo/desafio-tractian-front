@@ -62,6 +62,9 @@ const CreateCompanyWrapper = styled.main`
   position: relative;
   flex-direction: column;
   padding: 0px 100px;
+  background-color: #224eb8;
+  height: calc(100vh - 70px);
+  top: 70px;
 `;
 
 const CreateCompanyContainer = styled.div`
@@ -72,13 +75,13 @@ const CreateCompanyContainer = styled.div`
   background-color: #00045c;
 
   width: 100%;
-  min-height: 750px;
   padding: 20px 40px;
+  min-height: 600px;
 
   form {
-    margin-top: 100px;
     width: 100%;
     display: flex;
+    margin-top: 50px;
     justify-content: center;
     flex-direction: column;
     align-items: center;
