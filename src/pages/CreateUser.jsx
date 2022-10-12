@@ -13,8 +13,6 @@ export default function CreateUser() {
   const { auth } = useContext(AuthContext);
 
   const [userData, setUserData] = useState({ manager: false });
-  console.log(userData);
-
   async function handleForm(e) {
     e.preventDefault();
     try {

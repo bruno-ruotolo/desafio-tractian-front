@@ -13,6 +13,13 @@ export default function Header() {
   return (
     <HeaderWrapper>
       <img src={NaittracLogo} alt="" />
+      <h2
+        onClick={() => {
+          navigate("/companies");
+        }}
+      >
+        Companies
+      </h2>
       <UsersContainer onClick={() => navigate("/users")}>
         <UserOutlined className="user_icon" />
         <h2>Users</h2>
@@ -35,11 +42,21 @@ const HeaderWrapper = styled.header`
   height: 70px;
   width: 100vw;
   padding: 0px 100px;
+  z-index: 20;
 
   img {
     width: 164px;
     height: 23px;
     left: 0;
+  }
+  h2 {
+    cursor: pointer;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 26px;
+    text-align: justify;
+    color: #ffffff;
   }
 `;
 
@@ -73,14 +90,5 @@ const UsersContainer = styled.div`
     font-size: 30px;
     color: #ffffff;
     margin-right: 10px;
-  }
-
-  h2 {
-    font-style: normal;
-    font-weight: 400;
-    font-size: 25px;
-    line-height: 26px;
-    text-align: justify;
-    color: #ffffff;
   }
 `;

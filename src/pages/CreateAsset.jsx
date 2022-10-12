@@ -1,30 +1,37 @@
 import styled from "styled-components";
 import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
-import companiesService from "../services/companiesService";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import { ArrowLeftOutlined } from "@ant-design/icons";
+import unitsService from "../services/unitsService";
+import SelectUnits from "../components/assets/SelectUnits";
+import SelectUsers from "../components/assets/SelectUsers";
+import assetsService from "../services/assetsService";
 
-export default function CreateCompany() {
+export default function CreateAsset() {
   const navigate = useNavigate();
   const { auth } = useContext(AuthContext);
 
-  const [companyData, setCompanyData] = useState({});
+  const [assetData, setAssetData] = useState({});
+  console.log(assetData);
+
+  const location = useLocation();
+  const localPath = location.pathname.split("/")[1];
 
   async function handleForm(e) {
     e.preventDefault();
     try {
-      await companiesService.createCompany(companyData, auth.token);
-      navigate("/companies");
+      await assetsService.createAsset(assetData, auth.token);
+      navigate(-1);
     } catch (error) {
       console.log(error);
     }
   }
 
   function handleInput(e) {
-    setCompanyData({
-      ...companyData,
+    setAssetData({
+      ...assetData,
       [e.target.attributes.name.nodeValue]: e.target.value,
     });
   }
@@ -32,45 +39,75 @@ export default function CreateCompany() {
   return (
     <>
       <Header />
-      <CreateCompanyWrapper>
-        <CreateCompanyContainer>
+      <CreateWrapper>
+        <CreateContainer>
           <TitleContainer>
             <ArrowLeftOutlined
               className="arrow_left_icon"
               onClick={() => navigate(-1)}
             />
-            <h2>Creating Company</h2>
+            <h2>Creating Asset</h2>
           </TitleContainer>
           <form onSubmit={handleForm}>
             <input
               type="text"
-              name="name"
-              placeholder="Company Name"
+              name="title"
+              placeholder="Asset Name"
               onChange={(e) => handleInput(e)}
+            />
+            <input
+              type="text"
+              name="image"
+              placeholder="Asset Image Link"
+              onChange={(e) => handleInput(e)}
+            />
+            <input
+              type="text"
+              name="description"
+              placeholder="Asset Description"
+              onChange={(e) => handleInput(e)}
+            />
+            <input
+              type="text"
+              name="model"
+              placeholder="Asset Model"
+              onChange={(e) => handleInput(e)}
+            />
+
+            <SelectUnits
+              setUnitId={(unityId) => setAssetData({ ...assetData, unityId })}
+              token={auth.token}
+              companyId={localPath}
+            />
+
+            <SelectUsers
+              setUserId={(owner) => setAssetData({ ...assetData, owner })}
+              token={auth.token}
             />
             <button type="submit">Create</button>
           </form>
-        </CreateCompanyContainer>
-      </CreateCompanyWrapper>
+        </CreateContainer>
+      </CreateWrapper>
     </>
   );
 }
 
-const CreateCompanyWrapper = styled.main`
+const CreateWrapper = styled.main`
   display: flex;
   position: relative;
   flex-direction: column;
   padding: 0px 100px;
   background-color: #224eb8;
   height: calc(100vh - 70px);
-  top: 70px;
+  top: 0px;
+  z-index: 0;
 `;
 
-const CreateCompanyContainer = styled.div`
+const CreateContainer = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  top: 150px;
+  top: 120px;
   background-color: #00045c;
 
   width: 100%;
@@ -80,7 +117,7 @@ const CreateCompanyContainer = styled.div`
   form {
     width: 100%;
     display: flex;
-    margin-top: 50px;
+    margin-top: 0px;
     justify-content: center;
     flex-direction: column;
     align-items: center;
@@ -98,6 +135,7 @@ const CreateCompanyContainer = styled.div`
       line-height: 26px;
       text-align: justify;
       color: #00045c;
+      margin-bottom: 20px;
     }
 
     button {
@@ -106,7 +144,8 @@ const CreateCompanyContainer = styled.div`
       align-items: center;
       justify-content: center;
       border: none;
-      margin-top: 100px;
+      margin-top: 50px;
+      margin-bottom: 50px;
       width: 280px;
       height: 70px;
       background-color: #224eb9;

@@ -5,26 +5,30 @@ import companiesService from "../services/companiesService";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import { ArrowLeftOutlined } from "@ant-design/icons";
+import SelectUsers from "../components/users/SelectUsers";
+import unitsService from "../services/unitsService";
 
-export default function CreateCompany() {
+export default function CreateUnity() {
   const navigate = useNavigate();
   const { auth } = useContext(AuthContext);
 
-  const [companyData, setCompanyData] = useState({});
+  const [unitData, setUnitData] = useState({});
 
   async function handleForm(e) {
     e.preventDefault();
     try {
-      await companiesService.createCompany(companyData, auth.token);
-      navigate("/companies");
+      const data = { name: unitData.name };
+      const { companyId } = unitData;
+      await unitsService.createUnit(data, companyId, auth.token);
+      navigate(-1);
     } catch (error) {
       console.log(error);
     }
   }
 
   function handleInput(e) {
-    setCompanyData({
-      ...companyData,
+    setUnitData({
+      ...unitData,
       [e.target.attributes.name.nodeValue]: e.target.value,
     });
   }
@@ -32,31 +36,38 @@ export default function CreateCompany() {
   return (
     <>
       <Header />
-      <CreateCompanyWrapper>
-        <CreateCompanyContainer>
+      <CreateWrapper>
+        <CreateContainer>
           <TitleContainer>
             <ArrowLeftOutlined
               className="arrow_left_icon"
               onClick={() => navigate(-1)}
             />
-            <h2>Creating Company</h2>
+            <h2>Creating Unit</h2>
           </TitleContainer>
           <form onSubmit={handleForm}>
             <input
               type="text"
               name="name"
-              placeholder="Company Name"
+              placeholder="Unit Name"
               onChange={(e) => handleInput(e)}
+            />
+
+            <SelectUsers
+              setCompanyId={(companyId) =>
+                setUnitData({ ...unitData, companyId })
+              }
+              token={auth.token}
             />
             <button type="submit">Create</button>
           </form>
-        </CreateCompanyContainer>
-      </CreateCompanyWrapper>
+        </CreateContainer>
+      </CreateWrapper>
     </>
   );
 }
 
-const CreateCompanyWrapper = styled.main`
+const CreateWrapper = styled.main`
   display: flex;
   position: relative;
   flex-direction: column;
@@ -66,7 +77,7 @@ const CreateCompanyWrapper = styled.main`
   top: 70px;
 `;
 
-const CreateCompanyContainer = styled.div`
+const CreateContainer = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -98,6 +109,7 @@ const CreateCompanyContainer = styled.div`
       line-height: 26px;
       text-align: justify;
       color: #00045c;
+      margin-bottom: 20px;
     }
 
     button {

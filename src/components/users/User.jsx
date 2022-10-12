@@ -1,5 +1,5 @@
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import { useContext, useState } from "react";
+import { DeleteOutlined } from "@ant-design/icons";
+import { useContext } from "react";
 import styled from "styled-components";
 import { AuthContext } from "../../context/AuthContext";
 import usersService from "../../services/usersService";
@@ -18,7 +18,6 @@ export default function User({ user, setRefresh, refresh }) {
   return (
     <UserWrapper>
       <h4>{user.name}</h4>
-      <EditOutlined className="edit_icon" />
       <DeleteOutlined className="delete_icon" onClick={handleDelete} />
     </UserWrapper>
   );
@@ -45,17 +44,10 @@ const UserWrapper = styled.div`
     color: #00045c;
   }
 
-  .edit_icon {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    font-size: 20px;
-  }
-
   .delete_icon {
     position: absolute;
     top: 5px;
-    right: 35px;
+    right: 5px;
     font-size: 20px;
   }
 `;

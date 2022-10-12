@@ -1,13 +1,7 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import {
-  ArrowLeftOutlined,
-  DownOutlined,
-  PlusSquareOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
+import { ArrowLeftOutlined, PlusSquareOutlined } from "@ant-design/icons";
 
-import NaittracLogo from "../assets/naittrac.png";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import Header from "../components/Header";
@@ -19,7 +13,6 @@ export default function Users() {
   const { setAuth, auth } = useContext(AuthContext);
   const [refresh, setRefresh] = useState(false);
   const [users, setUsers] = useState([{ managers: [], employees: [] }]);
-  console.log(users);
 
   useEffect(() => {
     (async () => {

@@ -21,7 +21,6 @@ export default function SignIn() {
       localStorage.setItem("auth", token);
       const userInfos = token ? jwt_decode(token) : null;
       setAuth({ ...userInfos, token });
-      console.log(auth);
       navigate("/companies");
     } catch (error) {
       console.log(error);
@@ -34,8 +33,6 @@ export default function SignIn() {
       [e.target.attributes.name.nodeValue]: e.target.value,
     });
   }
-
-  console.log(login);
 
   return (
     <SignInWrapper>

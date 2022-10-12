@@ -21,8 +21,6 @@ export default function UserCompanies() {
     })();
   }, [auth.token]);
 
-  console.log(companies);
-
   return (
     <CompaniesWrapper>
       <TitleContainer>
@@ -34,7 +32,7 @@ export default function UserCompanies() {
       </TitleContainer>
 
       <ButtonsContainer>
-        {companies.map(({ name, _id }) => {
+        {companies?.map(({ name, _id }) => {
           return (
             <button
               key={_id}
