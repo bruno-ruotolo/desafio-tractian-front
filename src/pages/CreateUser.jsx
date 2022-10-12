@@ -44,8 +44,8 @@ export default function CreateUser() {
     <>
       <Header />
       <CreateUserWrapper className="create_wrapper">
-        <CreateUserContainer>
-          <TitleContainer>
+        <CreateUserContainer className="create_container">
+          <TitleContainer className="create_title_container">
             <ArrowLeftOutlined
               className="arrow_left_icon"
               onClick={() => navigate(-1)}
