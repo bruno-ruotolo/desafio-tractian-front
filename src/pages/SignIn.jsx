@@ -2,15 +2,17 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { Rings } from "react-loader-spinner";
 import jwt_decode from "jwt-decode";
-
-import NaittracLogo from "../assets/naittrac.png";
 import { useContext, useState } from "react";
+
 import authService from "../services/authService";
 import { AuthContext } from "../context/AuthContext";
 
+import NaittracLogo from "../assets/naittrac.png";
+
 export default function SignIn() {
   const navigate = useNavigate();
-  const { setAuth, auth } = useContext(AuthContext);
+
+  const { setAuth } = useContext(AuthContext);
 
   const [login, setLogin] = useState();
 

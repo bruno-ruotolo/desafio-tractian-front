@@ -1,8 +1,10 @@
 import styled from "styled-components";
+
 import Asset from "./Asset";
 
 export default function Unity({ unity }) {
   const { name, assets } = unity;
+
   return (
     <UnitWrapper>
       <h2>{name}</h2>

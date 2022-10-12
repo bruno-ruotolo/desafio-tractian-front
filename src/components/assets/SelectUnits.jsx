@@ -1,12 +1,12 @@
 import { Select } from "antd";
-import styled from "styled-components";
 import "antd/dist/antd.css";
 import { useEffect, useState } from "react";
-import companiesService from "../../services/companiesService";
+
 import unitsService from "../../services/unitsService";
 
 export default function SelectUnits({ setUnitId, token, companyId }) {
   const { Option } = Select;
+
   const [units, setUnits] = useState([{ _id: 0 }]);
 
   useEffect(() => {
@@ -18,9 +18,9 @@ export default function SelectUnits({ setUnitId, token, companyId }) {
     })();
   }, [companyId, token]);
 
-  const onChange = (value) => {
+  function onChange(value) {
     setUnitId(value);
-  };
+  }
 
   return (
     <Select

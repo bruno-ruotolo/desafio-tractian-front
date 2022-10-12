@@ -1,11 +1,12 @@
 import { DeleteOutlined } from "@ant-design/icons";
 import { useContext } from "react";
 import styled from "styled-components";
+
 import { AuthContext } from "../../context/AuthContext";
 import usersService from "../../services/usersService";
 
 export default function User({ user, setRefresh, refresh }) {
-  const { setAuth, auth } = useContext(AuthContext);
+  const { auth } = useContext(AuthContext);
 
   async function handleDelete() {
     try {
@@ -15,6 +16,7 @@ export default function User({ user, setRefresh, refresh }) {
       console.log(error);
     }
   }
+
   return (
     <UserWrapper>
       <h4>{user.name}</h4>

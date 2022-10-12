@@ -1,13 +1,16 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+
 import { AuthContext } from "../../context/AuthContext";
 import companiesService from "../../services/companiesService";
 import { PlusSquareOutlined } from "@ant-design/icons";
 
 export default function UserCompanies() {
   const navigate = useNavigate();
-  const { setAuth, auth } = useContext(AuthContext);
+
+  const { auth } = useContext(AuthContext);
+
   const [companies, setCompanies] = useState([]);
 
   useEffect(() => {

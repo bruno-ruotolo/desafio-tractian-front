@@ -1,10 +1,12 @@
 import { Select } from "antd";
 import "antd/dist/antd.css";
 import { useEffect, useState } from "react";
+
 import usersService from "../../services/usersService";
 
 export default function SelectUsers({ setUserId, token }) {
   const { Option } = Select;
+
   const [users, setUsers] = useState([{ managers: [], employees: [] }]);
   const { managers, employees } = users;
   const allUsers = managers?.concat(employees);
@@ -18,9 +20,9 @@ export default function SelectUsers({ setUserId, token }) {
     })();
   }, [token]);
 
-  const onChange = (value) => {
+  function onChange(value) {
     setUserId(value);
-  };
+  }
 
   return (
     <Select

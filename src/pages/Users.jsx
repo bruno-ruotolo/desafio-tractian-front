@@ -2,16 +2,19 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeftOutlined, PlusSquareOutlined } from "@ant-design/icons";
 
+import Header from "../components/Header";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
-import Header from "../components/Header";
 import usersService from "../services/usersService";
 import User from "../components/users/User";
 
 export default function Users() {
   const navigate = useNavigate();
-  const { setAuth, auth } = useContext(AuthContext);
+
+  const { auth } = useContext(AuthContext);
+
   const [refresh, setRefresh] = useState(false);
+
   const [users, setUsers] = useState([{ managers: [], employees: [] }]);
 
   useEffect(() => {

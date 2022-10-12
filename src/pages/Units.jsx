@@ -1,15 +1,18 @@
 import styled from "styled-components";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../context/AuthContext";
-import Header from "../components/Header";
-import unitsService from "../services/unitsService";
 import { ArrowLeftOutlined, PlusSquareFilled } from "@ant-design/icons";
+
+import Header from "../components/Header";
+import { AuthContext } from "../context/AuthContext";
+import unitsService from "../services/unitsService";
 import Unity from "../components/units/Unity";
+
 export default function Units() {
   const navigate = useNavigate();
 
-  const { setAuth, auth } = useContext(AuthContext);
+  const { auth } = useContext(AuthContext);
+
   const [units, setUnits] = useState();
 
   const location = useLocation();

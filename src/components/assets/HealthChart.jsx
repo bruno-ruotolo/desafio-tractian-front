@@ -1,0 +1,83 @@
+import styled from "styled-components";
+import Highcharts from "highcharts";
+import HighchartsReact from "highcharts-react-official";
+
+export default function HealthChart({ healthArr, timeArr }) {
+  const healthOptions = {
+    title: {
+      text: "Health Chart",
+    },
+    yAxis: {
+      title: { text: "Health (%)" },
+      max: 100,
+      min: 0,
+    },
+    xAxis: {
+      categories: timeArr,
+      title: { text: "Time" },
+    },
+    series: [
+      {
+        data: healthArr,
+        name: "Health Data",
+        color: "#00045c",
+      },
+    ],
+  };
+
+  return (
+    <HealthGraph>
+      <HighchartsReact highcharts={Highcharts} options={healthOptions} />
+    </HealthGraph>
+  );
+}
+
+const HealthGraph = styled.article`
+  width: 780px;
+  height: fit-content;
+  background-color: #00045c;
+  margin-bottom: 30px;
+
+  .highcharts-figure,
+  .highcharts-data-table table {
+    min-width: 360px;
+    max-width: 800px;
+    margin: 1em auto;
+  }
+
+  .highcharts-data-table table {
+    font-family: Verdana, sans-serif;
+    border-collapse: collapse;
+    border: 1px solid #ebebeb;
+    margin: 10px auto;
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+  }
+
+  .highcharts-data-table caption {
+    padding: 1em 0;
+    font-size: 1.2em;
+    color: #555;
+  }
+
+  .highcharts-data-table th {
+    font-weight: 600;
+    padding: 0.5em;
+  }
+
+  .highcharts-data-table td,
+  .highcharts-data-table th,
+  .highcharts-data-table caption {
+    padding: 0.5em;
+  }
+
+  .highcharts-data-table thead tr,
+  .highcharts-data-table tr:nth-child(even) {
+    background: #f8f8f8;
+  }
+
+  .highcharts-data-table tr:hover {
+    background: #f1f7ff;
+  }
+`;

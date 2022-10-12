@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { DownOutlined, UserOutlined } from "@ant-design/icons";
+import { DownOutlined, ExportOutlined, UserOutlined } from "@ant-design/icons";
 
 import NaittracLogo from "../assets/naittrac.png";
 import { useContext } from "react";
@@ -9,7 +9,13 @@ import { AuthContext } from "../context/AuthContext";
 export default function Header() {
   const navigate = useNavigate();
 
-  const { setAuth, auth } = useContext(AuthContext);
+  const { auth } = useContext(AuthContext);
+
+  function logout() {
+    localStorage.removeItem("auth");
+    navigate("/");
+  }
+
   return (
     <HeaderWrapper>
       <img src={NaittracLogo} alt="" />
@@ -26,7 +32,7 @@ export default function Header() {
       </UsersContainer>
       <UserContainer>
         <p>{auth.name}</p>
-        <DownOutlined className="down_icon" />
+        <ExportOutlined onClick={logout} className="down_icon" />
       </UserContainer>
     </HeaderWrapper>
   );
@@ -74,6 +80,7 @@ const UserContainer = styled.div`
   }
 
   .down_icon {
+    cursor: pointer;
     font-size: 20px;
     margin-left: 10px;
     color: #ffffff;

@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute";
 import AuthProvider from "./context/AuthContext";
-
 import GlobalStyled from "./global/globalStyled";
+
 import Assets from "./pages/Assets";
 import Companies from "./pages/Companies";
 import CreateAsset from "./pages/CreateAsset";

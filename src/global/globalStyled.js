@@ -69,6 +69,95 @@ button{
   border:none;
   background-color: none;
 }
+
+.create_button {
+	display: flex;
+	cursor: pointer;
+	align-items: center;
+	justify-content: center;
+	border: none;
+	margin-top: 100px;
+	width: 280px;
+	height: 70px;
+	background-color: #224eb9;
+	box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 4px;
+
+	font-style: normal;
+	font-weight: 400;
+	font-size: 32px;
+	line-height: 41px;
+	text-align: justify;
+	color: #ffffff;
+}
+
+.create_input {
+	background-color: #d9d9d9;
+	width: 500px;
+	height: 55px;
+	border-radius: 4px;
+	padding-left: 20px;
+
+	font-style: normal;
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 26px;
+	text-align: justify;
+	color: #00045c;
+	margin-bottom: 20px;
+}
+
+.create_form {
+	width: 100%;
+	display: flex;
+	margin-top: 50px;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+}
+
+.create_wrapper {
+	display: flex;
+  position: relative;
+  flex-direction: column;
+  padding: 0px 100px;
+  background-color: #224eb8;
+  height: calc(100vh - 70px);
+  top: 70px;
+}
+
+.create_container {
+	position: relative;
+  display: flex;
+  flex-direction: column;
+  top: 150px;
+  background-color: #00045c;
+
+  width: 100%;
+  padding: 20px 40px;
+  min-height: 600px;
+}
+
+.create_title_container {
+	display: flex;
+  margin-bottom: 80px;
+
+  h2 {
+    font-family: "Crete Round";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 41px;
+    text-align: justify;
+    color: #ffffff;
+  }
+
+  .arrow_left_icon {
+    color: #ffffff;
+    font-size: 40px;
+    margin-right: 30px;
+  }
+}
 `;
 
 export default GlobalStyled;
